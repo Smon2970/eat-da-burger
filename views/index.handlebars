@@ -1,0 +1,43 @@
+<div class="container">
+  
+  <img src="\Images\image1.jpg">
+  <h1>Eat-Da-Burger!</h1>
+
+  <div class="row">
+
+    <div class="col-sm-6">
+      <h2>Burgers to Eat!</h2>
+      {{#each burgers}}
+        {{#unless this.inhaled}}
+          <form id="update" >
+            <input type="hidden" name="inhaled" value="true">
+            <button id="burgerEatBtn" data-burgerId="{{this.id}}" class="btn btn-danger" type="submit">Eat it!</button>
+          </form>
+          <div class="well">
+            {{this.id}}. {{this.burger_name}}
+          </div>
+        {{/unless}}
+      {{/each}}
+    </div>
+
+    <div class="col-sm-6">
+      <h2>Burgers Eaten!</h2>
+      {{#each burgers}}
+        {{#if this.inhaled}}
+          <div class="well inhaled">
+            {{this.id}}. {{this.burger_name}}
+          </div>
+        {{/if}}
+      {{/each}}
+      </div>
+
+  </div>
+
+  <h2>Create any burger you want!</h2>
+  
+  <form id="add" action="/burgers/add" method="POST">
+    <textarea name="burger_name"></textarea>
+    <button class="btn btn-warning" type="submit">Submit</button>
+  </form>
+
+</div>
